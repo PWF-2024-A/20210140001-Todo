@@ -19,7 +19,7 @@ class Todo extends Seeder
 
         'email_verified_at' => now(),
 
-        'password' => '$2y$12$/yzbNlOsTig4XdtT5u54NOn8781FWelCb198lrnZl/j'  
+        'password' => '$2y$12$/yzbNlOsTig4XdtT5u54NOn8781FWelCb198lrnZl/'
                     ,
         'remember_token' => Str::random(10),
 
