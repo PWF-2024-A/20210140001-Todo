@@ -9,15 +9,15 @@ use Illuminate\Queue\Failed\PrunableFailedJobProvider;
 class Todo extends Model
 {
     use HasFactory;
-    
 
-    protected $filliable = [
+
+    protected $filelable = [
         'title', 'user_id', 'is_complete'
     ];
 
     public function user()
     {
-        return $this -> belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }
 

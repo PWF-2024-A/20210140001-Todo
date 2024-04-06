@@ -13,18 +13,16 @@ class TodoController extends Controller
     public function index()
     {
         $todos = Todo::where('user_id', auth()->user()->id)
-
-->orderBy('is_complete', 'asc')
-
-                ->orderBy('created_at', 'desc')
-
-                ->orderBy('created_at', 'desc')
-
-                ->get();
-
-                return view('todo.index', compact('todos'));
+            ->orderBy('is_complete', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        // dd($todos);
+        return view('todo.index', compact('todos'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         return view('todo.create');
@@ -35,24 +33,21 @@ class TodoController extends Controller
      */
     public function store(Request $request, Todo $todo)
     {
-        $request-> validate([
+        $request->validate([
             'title' => 'required|max:255',
         ]);
 
-
-
-        $todo = Todo::create([
+        $todo = Todo::created([
             'title' => ucfirst($request->title),
-
+            'user_id' => auth()->user()->id,
         ]);
 
-        return redirect()-> route('todo.index')->with('success', 'Todo created successfully!');
-
+        return redirect()->route('todo.index')->with('success', 'Todo created successfully!');
     }
 
-
-
-
+    /**
+     * Display the specified resource.
+     */
     public function show(Todo $todo)
     {
         //

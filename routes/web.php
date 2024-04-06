@@ -32,6 +32,10 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/todo', [TodoController::class, 'index'])->name('todo.index');
 
+Route::patch('/todo{todo/complete',[TodoController::class, 'complete'])->name('todo.complete');
+
+Route::patch('/todo{todo/incomplete', [TodoController::class, 'uncomplete'])->name('todo.uncomplete');
+
 
 Route::post('/todo', [TodoController::class, 'store'])-> name('todo.store');
 
