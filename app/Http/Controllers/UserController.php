@@ -49,6 +49,37 @@ return view('user.index', compact('users'));
         //
     }
 
+
+
+    public function makeadmin(User $user)
+    {
+        $user->timestamps = false;
+
+        $user->is_admin = true;
+
+        $user->save();
+
+        return back()->with('success', 'Make admin successfully! ');
+
+    }
+
+    public function removeadmin(User $user) {
+
+        if ($user->id !=1) {
+
+            $user->timestamps = false;
+
+            $user->is_admin = false;
+
+            $user->save();
+
+            return back()->with('success', 'Remove admin successfully!');
+
+        } else {
+            return redirect()->route('user.index');
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -86,6 +117,16 @@ return view('user.index', compact('users'));
      */
     public function destroy(User $user)
     {
-        //
+        if ($user->id !=1) {
+
+            $user->delete();
+
+            return back()->with('success', 'delete user successfully');
+
+
+        } else {
+
+            return redirect()->route('user.index')->with('danger', 'delete user failed!');
+        }
     }
 }
